@@ -1,10 +1,11 @@
 import apsw, threading
 import os, traceback
+from ..core.config import master_db
 
 connection_pool = {}
 
 
-class sql_connect():
+class sql_connection():
     def __init__(self, db_id, db_path):
         self.cursor = get_cursor(db_path)
         self.db_id = db_id
@@ -111,3 +112,6 @@ def remove_connection_object(id):
             conn = connection_pool[id][thread_id] 
             conn.close()
         del connection_pool[id]
+
+def master_connection():
+    return sql_connection("master", master_db)

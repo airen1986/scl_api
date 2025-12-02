@@ -43,7 +43,7 @@ CREATE TABLE S_UserRoles (
     RoleId      INTEGER PRIMARY KEY AUTOINCREMENT,
     RoleName    TEXT    NOT NULL
                         UNIQUE,
-    Description TEXT,
+    RoleDescription TEXT,
     CreatedAt   TEXT    NOT NULL
                         DEFAULT (datetime('now') ),
     UpdatedAt   TEXT    NOT NULL
@@ -57,7 +57,7 @@ CREATE TABLE S_Users (
     RoleId         INTEGER NOT NULL,
     Email          TEXT    NOT NULL
                            UNIQUE,
-    UserName       TEXT,
+    DisplayName    TEXT,
     PasswordHash   TEXT    NOT NULL,
     PasswordSalt   TEXT    NOT NULL,
     ActivationCode TEXT,
@@ -71,6 +71,7 @@ CREATE TABLE S_Users (
                            DEFAULT (datetime('now') ) 
 );
 
+INSERT INTO S_UserRoles (RoleId, RoleName, RoleDescription) VALUES (0, 'User', 'General User');
 
 COMMIT TRANSACTION;
 PRAGMA foreign_keys = on;

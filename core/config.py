@@ -13,3 +13,5 @@ class Settings(BaseSettings):
 
 settings = Settings()
 
+master_db = settings.MASTER_DB
+
